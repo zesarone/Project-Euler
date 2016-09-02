@@ -3,11 +3,15 @@
         <script src="https://code.jquery.com/jquery-2.2.4.js"></script>       
     </head>
     <body>        
+        <div class="problem_content" role="problem">
+            <p>The sum of the primes below 10 is 2 + 3 + 5 + 7 = 17.</p>
+            <p>Find the sum of all the primes below two million.</p>
+        </div>
         <div class="result"></div>
         <script type="text/javascript">
             var numbers = new Array(2000000);
-            numbers.fill(false,0,1);            
-            numbers.fill(true,2);
+            numbers.fill(false, 0, 1);
+            numbers.fill(true, 2);
             var prime = 2;
             var findNextPrime = function (prime) {
                 for (var i = prime + 1; i < numbers.length; i++) {
