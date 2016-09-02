@@ -1,0 +1,36 @@
+<html>
+    <head>
+        <script src="https://code.jquery.com/jquery-2.2.4.js"></script>       
+    </head>
+    <body>        
+        <div class="result"></div>
+        <script type="text/javascript">
+            var max = 2000000
+            var numbers = new Array(max);
+            for(var i = 0;i < numbers.length;i++)
+                numbers[i] = true;
+            numbers[0] = numbers[1] = false;
+            var prime = 2;
+            var findNextPrime = function (prime) {
+                for (var i = prime + 1; i <= max; i++) {
+                    if (numbers[i])
+                        return i;
+                }
+                return false;
+            }
+            do {
+                for(var i = prime*2;i < numbers.length;i += prime){
+                    if (! (!numbers[i] || i <= prime) ){
+                        numbers[i] = !(i % prime === 0);
+                    }
+                }
+            }while(prime = findNextPrime(prime,max));
+            var sum = 0;
+            for(var i = 0;i < numbers.length;i++){
+                if(numbers[i])
+                    sum += i;
+            }
+            console.log(sum);            
+        </script>
+    </body>
+</html>
