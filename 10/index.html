@@ -5,32 +5,25 @@
     <body>        
         <div class="result"></div>
         <script type="text/javascript">
-            var max = 2000000
-            var numbers = new Array(max);
-            for(var i = 0;i < numbers.length;i++)
-                numbers[i] = true;
-            numbers[0] = numbers[1] = false;
+            var numbers = new Array(2000000);
+            numbers.fill(false,0,1);            
+            numbers.fill(true,2);
             var prime = 2;
             var findNextPrime = function (prime) {
-                for (var i = prime + 1; i <= max; i++) {
+                for (var i = prime + 1; i < numbers.length; i++) {
                     if (numbers[i])
                         return i;
                 }
                 return false;
             }
-            do {
-                for(var i = prime*2;i < numbers.length;i += prime){
-                    if (! (!numbers[i] || i <= prime) ){
-                        numbers[i] = !(i % prime === 0);
-                    }
-                }
-            }while(prime = findNextPrime(prime,max));
             var sum = 0;
-            for(var i = 0;i < numbers.length;i++){
-                if(numbers[i])
-                    sum += i;
-            }
-            console.log(sum);            
+            do {
+                sum += prime;
+                for (var i = prime * 2; i <= numbers.length - 1; i += prime) {
+                    numbers[i] = false;
+                }
+            } while (prime = findNextPrime(prime, numbers.length));
+            console.log(sum);
         </script>
     </body>
 </html>
